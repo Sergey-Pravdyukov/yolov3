@@ -514,12 +514,12 @@ def load_image(self, index):
     # loads 1 image from dataset, returns img, original hw, resized hw
     img = self.imgs[index]
     if img is None:  # not cached
-        print("img not cached")
+        # print("img not cached")
         # cmd = ['find', '/content/demo_diploma/pruned_RTSD/detection/rtsd-d1-frames/images', '-name', str(self.img_files[index])]
         # x = subprocess.run(cmd, stdout=PIPE)
         # print("subprocess result:", x.stdout)
         img_path = '/content/demo_diploma/pruned_RTSD/detection/rtsd-d1-frames/images/' + self.datatype + '/' + self.img_files[index]
-        print("img path:", img_path)
+        # print("img path:", img_path)
         img = cv2.imread(img_path)  # BGR
         assert img is not None, 'Image Not Found ' + img_path
         h0, w0 = img.shape[:2]  # orig hw
