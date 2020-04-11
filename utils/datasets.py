@@ -521,7 +521,7 @@ def load_image(self, index):
         # x = subprocess.run(cmd, stdout=PIPE)
         # print("subprocess result:", x.stdout)
         img_path = self.img_files[index]
-        print("img_path:", img_path)
+        # print("img_path:", img_path)
         # print("img path:", img_path)
         img = cv2.imread(img_path)  # BGR
         assert img is not None, 'Image Not Found ' + img_path
