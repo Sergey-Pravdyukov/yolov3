@@ -1,4 +1,3 @@
-from subprocess import run, PIPE
 import glob
 import math
 import os
@@ -257,11 +256,13 @@ class LoadStreams:  # multiple IP or RTSP cameras
 
 
 class LoadImagesAndLabels(Dataset):  # for training/testing
-    def __init__(self, path, datatype, img_size=416, batch_size=16, augment=False, hyp=None, rect=False, image_weights=False,
+    def __init__(self, path, img_size=416, batch_size=16, augment=False, hyp=None, rect=False, image_weights=False,
                  cache_labels=True, cache_images=False, single_cls=False):
         path = str(Path(path))  # os-agnostic
-        labels_home = '/' + '/'.join(path.split('/')[1:-3]) + '/labels'
-    
+        print("path:", path)
+        labels_home = './' + '/'.join(path.split('/')[:-1]) + '/coco'
+        print("labels_home:", labels_home)
+
         assert os.path.isfile(path), 'File not found %s. See %s' % (path, help_url)
         with open(path, 'r') as f:
             self.img_files = [x.replace('/', os.sep) for x in f.read().splitlines()  # os-agnostic
@@ -273,13 +274,13 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         nb = bi[-1] + 1  # number of batches
 
         self.n = n
-        self.datatype = datatype
+        # self.datatype = datatype
         self.batch = bi  # batch index of image
         self.img_size = img_size
         self.augment = augment
         self.hyp = hyp
         self.image_weights = image_weights
-        self.rect = False 
+        self.rect = False if image_weights else rect
         self.mosaic = self.augment and not self.rect  # load 4 images at a time into a mosaic (only during training)
 
         # Define labels
@@ -330,7 +331,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
             nm, nf, ne, ns, nd = 0, 0, 0, 0, 0  # number missing, found, empty, datasubset, duplicate            
             for i, file in enumerate(pbar):
                 try:
-                    with open(os.path.join(labels_home, datatype, file), 'r') as f:
+                    print("labals file:", os.path.join(labels_home, file))
+                    with open(os.path.join(labels_home, file), 'r') as f:
                         l = np.array([x.split() for x in f.read().splitlines()], dtype=np.float32)
                 except:
                     nm += 1  # print('missing labels for image %s' % self.img_files[i])  # file missing
@@ -518,7 +520,8 @@ def load_image(self, index):
         # cmd = ['find', '/content/demo_diploma/pruned_RTSD/detection/rtsd-d1-frames/images', '-name', str(self.img_files[index])]
         # x = subprocess.run(cmd, stdout=PIPE)
         # print("subprocess result:", x.stdout)
-        img_path = '/content/demo_diploma/pruned_RTSD/detection/rtsd-d1-frames/images/' + self.datatype + '/' + self.img_files[index]
+        img_path = self.img_files[index]
+        print("img_path:", img_path)
         # print("img path:", img_path)
         img = cv2.imread(img_path)  # BGR
         assert img is not None, 'Image Not Found ' + img_path
