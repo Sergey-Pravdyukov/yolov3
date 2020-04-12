@@ -22,24 +22,24 @@ results_file = 'results.txt'
 
 # Hyperparameters https://github.com/ultralytics/yolov3/issues/310
 
-hyp = {'giou': 1.582,  # giou loss gain
-       'cls': 27.76,  # cls loss gain
-       'cls_pw': 1.46,  # cls BCELoss positive_weight
-       'obj': 21.35,  # obj loss gain (*=img_size/320 if img_size != 320)
-       'obj_pw': 3.941,  # obj BCELoss positive_weight
-       'iou_t': 0.2635,  # iou training threshold
-       'lr0': 0.002324,  # initial learning rate (SGD=5E-3, Adam=5E-4)
+hyp = {'giou': 1.58,  # giou loss gain
+       'cls': 27.8,  # cls loss gain
+       'cls_pw': 1.45,  # cls BCELoss positive_weight
+       'obj': 21.4,  # obj loss gain (*=img_size/320 if img_size != 320)
+       'obj_pw': 3.94,  # obj BCELoss positive_weight
+       'iou_t': 0.264,  # iou training threshold
+       'lr0': 0.00232,  # initial learning rate (SGD=5E-3, Adam=5E-4)
        'lrf': -4,  # final learning rate (with cos scheduler)
        'momentum': 0.97,  # SGD momentum
-       'weight_decay': 0.0004569,  # optimizer weight decay
-       'fl_gamma': 0.0,  # focal loss gamma (efficientDet default is gamma=1.5)
-       'hsv_h': 0.01,  # image HSV-Hue augmentation (fraction)
-       'hsv_s': 0.503,  # image HSV-Saturation augmentation (fraction)
-       'hsv_v': 0.3174,  # image HSV-Value augmentation (fraction)
-       'degrees': 1.113,  # image rotation (+/- deg)
-       'translate': 0.06797,  # image translation (+/- fraction)
-       'scale': 0.1059,  # image scale (+/- gain)
-       'shear': 0.5768}  # image shear (+/- deg)
+       'weight_decay': 0.000457,  # optimizer weight decay
+       'fl_gamma': 0.5,  # focal loss gamma (efficientDet default is gamma=1.5)
+       'hsv_h': 0.0138,  # image HSV-Hue augmentation (fraction)
+       'hsv_s': 0.678,  # image HSV-Saturation augmentation (fraction)
+       'hsv_v': 0.36,  # image HSV-Value augmentation (fraction)
+       'degrees': 1.11,  # image rotation (+/- deg)
+       'translate': 0.068,  # image translation (+/- fraction)
+       'scale': 0.106,  # image scale (+/- gain)
+       'shear': 0.577}  # image shear (+/- deg)
 
 # Overwrite hyp with hyp*.txt (optional)
 f = glob.glob('hyp*.txt')
