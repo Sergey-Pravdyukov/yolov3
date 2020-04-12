@@ -32,7 +32,7 @@ hyp = {'giou': 1.58,  # giou loss gain
        'lrf': -4,  # final learning rate (with cos scheduler)
        'momentum': 0.97,  # SGD momentum
        'weight_decay': 0.000457,  # optimizer weight decay
-       'fl_gamma': 0.5,  # focal loss gamma (efficientDet default is gamma=1.5)
+       'fl_gamma': 0.0,  # focal loss gamma (efficientDet default is gamma=1.5)
        'hsv_h': 0.0138,  # image HSV-Hue augmentation (fraction)
        'hsv_s': 0.678,  # image HSV-Saturation augmentation (fraction)
        'hsv_v': 0.36,  # image HSV-Value augmentation (fraction)
