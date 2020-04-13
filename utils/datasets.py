@@ -331,7 +331,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
             nm, nf, ne, ns, nd = 0, 0, 0, 0, 0  # number missing, found, empty, datasubset, duplicate            
             for i, file in enumerate(pbar):
                 try:
-                    print("labals file:", os.path.join(labels_home, file))
+                    # print("labals file:", os.path.join(labels_home, file))
                     with open(os.path.join(labels_home, file), 'r') as f:
                         l = np.array([x.split() for x in f.read().splitlines()], dtype=np.float32)
                 except:
