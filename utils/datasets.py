@@ -260,7 +260,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                  cache_labels=True, cache_images=False, single_cls=False):
         path = str(Path(path))  # os-agnostic
         print("path:", path)
-        labels_home = './' + '/'.join(path.split('/')[:-1]) + '/coco'
+        labels_home = '.' + '/'.join(path.split('/')[:-2]) 
         print("labels_home:", labels_home)
 
         assert os.path.isfile(path), 'File not found %s. See %s' % (path, help_url)
